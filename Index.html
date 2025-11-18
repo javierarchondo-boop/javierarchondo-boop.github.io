@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javier Archondo - Psicólogo Clínico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #9b59b6;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #34495e;
+            --highlight: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 40px 20px;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .profile-photo-container {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 5px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .photo-placeholder i {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 15px;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .contact-item i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .content {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .skill-item, .language-item {
+            margin-bottom: 15px;
+        }
+        
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-level {
+            height: 100%;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            border-radius: 4px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--secondary);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -36px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+        
+        .timeline-content h3 {
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+        }
+        
+        .tool-item {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .tool-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .tool-item i {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .profile-text {
+            font-style: italic;
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            margin-bottom: 25px;
+        }
+        
+        .speaking-icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+        
+        .photo-upload-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .upload-btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        
+        .upload-btn:hover {
+            background: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-photo-container {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="profile-section">
+                <div class="profile-photo-container">
+                    <!-- Reemplaza este div con tu foto -->
+                    <div class="photo-placeholder">
+                        <i class="fas fa-user"></i>
+                        <span>Tu foto aquí</span>
+                    </div>
+                    <!-- Para usar tu foto, reemplaza el div anterior con:
+                    <img src="ruta/a/tu/foto.jpg" alt="Javier Archondo" class="profile-photo">
+                    -->
+                </div>
+                <h1>Javier Archondo</h1>
+                <p class="tagline">Estudiante de Psicología de Quinto Semestre</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>77734958</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>javier.archondo@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Doble Vía La Guardia Km. 17/2</span>
+                    </div>
+                </div>
+                <div class="photo-upload-container">
+                    <div class="upload-btn" id="uploadTrigger">Subir foto</div>
+                    <input type="file" id="photoUpload" accept="image/*" style="display: none;">
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="section">
+                    <h2><i class="fas fa-user"></i> Perfil</h2>
+                    <div class="profile-text">
+                        Dedicar mi vida a la psicología, ayudando a profesionales a encontrar la mejor versión de sí, sanando sus historias, integrando su vida laboral-familiar y más importante que todo, encontrando su esencia. Además, incorporar métodos y técnicas terapéuticas actuales a nuestro entorno boliviano en un marco ético y comprometido.
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2><i class="fas fa-language"></i> Idiomas</h2>
+                    <div class="language-item">
+                        <div class="skill-name">
+                            <span>Inglés</span>
+                            <span>Avanzado</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="language-item">
+                        <div class="skill-name">
+                            <span>Italiano</span>
+                            <span>Básico</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 30%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2><i class="fas fa-tools"></i> Herramientas</h2>
+                    <div class="tools-grid">
+                        <div class="tool-item">
+                            <i class="fab fa-microsoft"></i>
+                            <div>Microsoft Office</div>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fas fa-palette"></i>
+                            <div>Canva</div>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fas fa-video"></i>
+                            <div>DaVinci Resolve</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="section">
+                    <h2><i class="fas fa-graduation-cap"></i> Formación Académica</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">En curso</div>
+                            <div class="timeline-content">
+                                <h3>Licenciatura en Psicología</h3>
+                                <p>Universidad Privada Boliviana (UPB)</p>
+                                <p>Promedio GPA: 93.50</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date"></div>
+                            <div class="timeline-content">
+                                <h3>Bachillerato en Humanidades</h3>
+                                <p>Latam Global School - Florida (Escuela Bilingüe)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2><i class="fas fa-briefcase"></i> Experiencia</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Dic 2024 - Ene 2025 | 100 horas</div>
+                            <div class="timeline-content">
+                                <h3>Asistente de Terapia (Voluntariado supervisado)</h3>
+                                <p>Centro Terapéutico Integral "Espiral"</p>
+                                <p>Colaboré en sesiones terapéuticas con niños con autismo, iniciando como observador y luego facilitando actividades directamente, bajo supervisión.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date"></div>
+                            <div class="timeline-content">
+                                <h3>Becario en Orientación y Consejería</h3>
+                                <p>Colaboré en la corrección de Pruebas de Orientación Vocacional (P.O.V.)</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date"></div>
+                            <div class="timeline-content">
+                                <h3>Becario en Selección y Reclutamiento</h3>
+                                <p>Experiencia en el área de selección y reclutamiento de personal.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2><i class="fas fa-award"></i> Logros Académicos</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h3>Beca Empresa UPB (50%)</h3>
+                                <p>Reconocimiento académico por excelencia en estudios.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2><i class="fas fa-certificate"></i> Formación Complementaria</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h3>Certificación en Tecnologías de la Información</h3>
+                                <p>Maxwell SRL - 15 Horas</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h3>Certificación en Competencias Digitales para profesionales</h3>
+                                <p>Google Activate - 40 horas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>Javier Archondo - Psicólogo Clínico en Formación</p>
+            <p>Comprometido con el bienestar integral y el desarrollo personal</p>
+        </div>
+    </footer>
+
+    <script>
+        // Funcionalidad para subir foto
+        document.getElementById('uploadTrigger').addEventListener('click', function() {
+            document.getElementById('photoUpload').click();
+        });
+        
+        document.getElementById('photoUpload').addEventListener('change', function(e) {
+            if (e.target.files && e.target.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const photoContainer = document.querySelector('.profile-photo-container');
+                    photoContainer.innerHTML = `<img src="${e.target.result}" alt="Javier Archondo" class="profile-photo">`;
+                }
+                
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+    </script>
+</body>
+</html>
